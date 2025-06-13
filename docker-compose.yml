@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: react_app
+    build: .
+    ports:
+      - "5173:80"
+#    restart: unless-stopped
+  backend:
+    container_name: node_server
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3000:3000"
