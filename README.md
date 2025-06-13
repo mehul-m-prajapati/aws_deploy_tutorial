@@ -1,5 +1,5 @@
 # AWS Deploy Demo (Full Stack App)
-
+```
 +-----------------+                   +-------------------------+                   +-----------------------+
 |                 |  (Push Docker)    |                         |   (Pull Docker)   |                       |
 | Local           |     Image         | AWS ECR Repository      |      IMage        | EC2 Instance          |
@@ -15,3 +15,4 @@
 
 
                                 Access via browser/API: http://<EC2-public-IP>/status
+```
