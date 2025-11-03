@@ -1,4 +1,4 @@
-## AWS Deploy Demo (Full Stack App)
+### AWS Deploy Demo (Full Stack App)
 ```
 +-----------------+                   +-------------------------+                   +-----------------------+
 |                 |  (Push Docker)    |                         |   (Pull Docker)   |                       |
@@ -19,7 +19,7 @@
 
 ---
 
-### Push docker images to ECR
+#### Push docker images to ECR
 ```
 # aws configure
 # ls ~\.aws\
@@ -36,12 +36,12 @@
 # aws ecr list-images --repository-name my-node-react-app --region us-east-1
 ```
 
-### Prepare your EC2 instance
+#### Prepare your EC2 instance
 - Launch an EC2 instance (Amazon Linux 2 or Ubuntu are good choices)
 - Make sure security groups allow ports 80, 3000, and 5173 as needed
 - Connect to the instance via SSH
 
-### Install Docker and Docker Compose on EC2
+#### Install Docker and Docker Compose on EC2
 For Amazon Linux 2:
 ```
 # sudo yum update -y
@@ -56,7 +56,7 @@ For Amazon Linux 2:
 # docker-compose --version
 ```
 
-### Authenticate Docker to your ECR registry on EC2
+#### Authenticate Docker to your ECR registry on EC2
 ```
 # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 547523460307.dkr.ecr.us-east-1.amazonaws.com
 ```
@@ -64,7 +64,7 @@ For Amazon Linux 2:
 - Make sure AWS CLI is installed and configured with an IAM role or credentials that can access ECR.
 - Best practice: Assign an IAM role with ECR pull permissions to the EC2 instance.
 
-### Modify your docker-compose.yml for remote images
+#### Modify your docker-compose.yml for remote images
 ```
 version: '3'
 
@@ -81,12 +81,12 @@ services:
       - "3000:3000"
 ```
 
-### Copy your updated docker-compose.yml to the EC2 instance
+#### Copy your updated docker-compose.yml to the EC2 instance
 ```
 # scp -i your-key.pem docker-compose.yml ec2-user@your-ec2-ip:~
 ```
 
-### On EC2, run the containers
+#### On EC2, run the containers
 ```
 docker-compose up
 ```
